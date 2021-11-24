@@ -82,8 +82,87 @@
     z-index: 800;
     color: Black;
   }
+  body {
+			margin: 0;
+			padding: 0;
+			background: "whitesmoke";
+			font-family: "Noto Sans", sans-serif;
+			color: #3d3d3d;
+		}
+button {
+  position: absolute;
+  margin-top: 0;
+  top: 900px;
+  left: 850px;
+  font-size: 0.8em;
+  font-family: "Source Sans, monospace";
+  letter-spacing: .2em;
+  padding: 10px 15px;
+  z-index: 800;
+  color: Black;
+  }
+    /* Popup container - can be anything you want */
+    .popup {
+      position: absolute;
+      bottom: 20;
+      right: 0;
+      width: 300px;
+      display: inline-block;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
+    /* The actual popup */
+    .popup .popuptext {
+      visibility: hidden;
+      width: 800px;
+      background-color: #F5FBFC;
+      color: #010101;
+      text-align: center;
+      border-radius: 6px;
+      padding: 8px 0;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -80px;
+    }
 
+    /* Popup arrow */
+    .popup .popuptext::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #555;
+
+    }
+
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+      visibility: visible;
+      -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+    }
+
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity:1 ;}
+    }
+	</style>
+</head>
 
     </style>
     	<link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
@@ -102,17 +181,37 @@
   <h2> from the New York Tree Census </h2>
 
 
-
-  <a href="https://tree-map.nycgovparks.org/" class="button"> More information </a>
-
-
-
 <div id="map"></div>
+
+<!-- popup text and div -->
+
+
+<button class="popup" onclick="myFunction()"> Want to Know More?
+  <span class="popuptext" id="myPopup">
+
+    <p> Numerous studies on the effects of trees on the happiness of city residents have revealed a strong correlation between more greenery and happier people. </p>
+
+    <p> New York city has taken these studies seriously and in 2015 established the million tree project, where they would plant one million trees throughout the city.
+    </p>
+
+    <p> To go along with this project, they put together an extensive tree census which outlines each tree, its location, its health and more.  </p>
+
+    <p>For more information Visit the <a href="https://tree-map.nycgovparks.org/"> New York Tree Census Website</a> </p>
+
+    <p>Map authored by Eliza Merritt</p> </span>
+</button>
+
+
 <script>
+// popup js
+function myFunction() {
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
   var mymap = L.map('map', {
-      center: [40.706782316176486, -74.0117216480341],
-      zoom: 16.5,
-      maxZoom: 18,
+      center: [40.705914594588506, -74.00195092332753],
+      zoom: 15.5,
+      maxZoom: 21,
       minZoom: 3,
       detectRetina: true
 
@@ -132,7 +231,6 @@ var gl = L.mapboxGL({
   // GeoJSON Data
   // Null vessel
   var Trees = null;
-
 
  var colors = chroma.scale('PRGn').colors(5);
   // 5. dynamically append style classes to this page. The style classes will be used to shade the markers.
@@ -163,7 +261,6 @@ var gl = L.mapboxGL({
     },
       attribution: 'New York Tree Census | Base Map &copy; Custom Base Map via Map Box | Map Author: Eliza Merritt '
   }).addTo(mymap);
-
 
 
 var legend = L.control({position: 'bottomright'});
