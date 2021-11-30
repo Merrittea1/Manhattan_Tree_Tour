@@ -228,12 +228,15 @@ function myFunction() {
 
 //}).addTo(mymap);
 
-  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(mymap);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',)
+
+.addTo(mymap);
+
   // GeoJSON Data
   // Null vessel
   var Trees = null;
 
- var colors = chroma.scale('Set1').colors(5);
+ var colors = chroma.scale('Set2').colors(5);
   // 5. dynamically append style classes to this page. The style classes will be used to shade the markers.
   // for loop
   for (i = 0; i < 3; i++) {
