@@ -220,19 +220,20 @@ function myFunction() {
 
   // Base Map
 
-mapbox_token = 'pk.eyJ1IjoibWVycml0dGVhIiwiYSI6ImNrdjE5Y2pwaTB0dm8ydHIyN3FtYzF3OGwifQ.LbzKeRdMPqwTy-JPfcqaEw'
-var gl = L.mapboxGL({
-  accessToken: mapbox_token,
-  style: 'assets/style.json',
-  attribution: 'created by [Eliza Merritt]'
+//mapbox_token = 'pk.eyJ1IjoibWVycml0dGVhIiwiYSI6ImNrdjE5Y2pwaTB0dm8ydHIyN3FtYzF3OGwifQ.LbzKeRdMPqwTy-JPfcqaEw'
+//var gl = L.mapboxGL({
+  //accessToken: mapbox_token,
+  //style: 'assets/style.json',
+  //attribution: 'created by [Eliza Merritt]'
 
-}).addTo(mymap);
+//}).addTo(mymap);
 
+  L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png').addTo(mymap);
   // GeoJSON Data
   // Null vessel
   var Trees = null;
 
- var colors = chroma.scale('Set2').colors(5);
+ var colors = chroma.scale('Set1').colors(5);
   // 5. dynamically append style classes to this page. The style classes will be used to shade the markers.
   // for loop
   for (i = 0; i < 3; i++) {
